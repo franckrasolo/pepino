@@ -1,0 +1,35 @@
+name:                examples
+version:             0.0.0.0
+synopsis:            Examples of tested Haskell code
+homepage:            https://github.com/franckrasolo/pepino
+license:             BSD3
+license-file:        LICENSE
+author:              Franck Rasolo
+maintainer:          https://github.com/franckrasolo/pepino
+category:            Testing
+build-type:          Simple
+cabal-version:       >= 1.10
+
+source-repository head
+  type:              git
+  location:          git://github.com/franckrasolo/pepino.git
+
+test-suite test
+  default-language:  Haskell2010
+  main-is:           Specs.hs
+  type:              exitcode-stdio-1.0
+  ghc-options:       -Wall
+  default-extensions:
+    GADTs,
+    StandaloneDeriving
+  hs-source-dirs:    .
+  build-depends:
+    base     >= 4.5 && <5,
+    hspec    >= 1.6,
+    hunit-rematch >= 0.1,
+    HUnit    >= 1.2,
+--    MissingH >= 1.1,
+--    parsec   >= 3.1,
+--    pretty   >= 1.1,
+    rematch  >= 0.2
+--    syb      >= 0.3
