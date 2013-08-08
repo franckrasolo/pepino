@@ -1,5 +1,6 @@
 module Arithmetic where
 
+-- GADT example taken from http://en.wikibooks.org/wiki/Haskell/GADT
 data Expr a where
 	I :: Int  -> Expr Int
 	B :: Bool -> Expr Bool
