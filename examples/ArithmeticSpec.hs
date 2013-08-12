@@ -1,4 +1,4 @@
-module Main where
+module ArithmeticSpec (spec) where
 
 import Arithmetic
 import Control.Rematch
@@ -6,11 +6,8 @@ import Test.Hspec
 import Test.Hspec.HUnit()
 import Test.Rematch.HUnit
 
-main :: IO ()
-main = hspec $ specs
-
-specs :: Spec
-specs = describe "An arithmetic expression defined as a GADT" $ do
+spec :: Spec
+spec = describe "An arithmetic expression defined as a GADT" $ do
 	it "can represent an integer" $
 		expect (eval (I 5)) (is 5)
 
