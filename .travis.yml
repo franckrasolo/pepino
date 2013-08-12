@@ -7,7 +7,6 @@ install:
     # So we need to do it manually for now...
     - cabal update
     - git clone https://github.com/franckrasolo/pepino && cd pepino && cabal install && cd ..
-#   - cabal install hspec hspec-discover HUnit rematch hunit-rematch
     - cabal install --only-dependencies --enable-tests
 
 script:
