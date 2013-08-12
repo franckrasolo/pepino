@@ -7,4 +7,4 @@ To build and test, execute the normal cabal steps:
     cabal build
     cabal test
 
-[![Build Status](https://travis-ci.org/franckrasolo/pepino.png)](https://travis-ci.org/franckrasolo/pepino)
+[![Build Status](https://travis-ci.org/franckrasolo/pepino.png?branch=master)](https://travis-ci.org/franckrasolo/pepino)
