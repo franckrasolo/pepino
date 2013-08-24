@@ -24,4 +24,7 @@ spec = describe "An arithmetic expression defined as a GADT" $ do
 		expect (eval ((I 5 `Add` I 1) `Mul` (I 2))) (is 12)
 
 	it "can be compared for equality" $
+		eval ((I 5 `Mul` I 3) `Eq` (I 3 `Mul` I 5)) `shouldBe` True
+
+	it "derives Eq and Show" $
 		expect ((I 5 `Add` I 1) `Mul` (I 2)) (isNot (equalTo ((I 5 `Add` I 1) `Mul` (I 3))))
