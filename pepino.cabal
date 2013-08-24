@@ -33,9 +33,6 @@ source-repository head
 library
   default-language:  Haskell2010
   ghc-options:       -Wall -Werror
-  default-extensions:
-    GADTs,
-    StandaloneDeriving
   hs-source-dirs:    core/src
   exposed-modules:   Pepino
   other-modules:

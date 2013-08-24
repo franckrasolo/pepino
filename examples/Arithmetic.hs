@@ -1,3 +1,5 @@
+{-# LANGUAGE GADTs, StandaloneDeriving #-}
+
 module Arithmetic where
 
 -- GADT example taken from http://en.wikibooks.org/wiki/Haskell/GADT

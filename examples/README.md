@@ -18,6 +18,6 @@ import Test.Hspec
 
 main :: IO ()
 main = hspec $ do
-  it "((5 + 1) * 3) == 18" $ do
+  it "(5 + 1) * 3 == 18" $ do
     eval ((I 5 `Add` I 1) `Mul` (I 3)) `shouldBe` 18
 ~~~
