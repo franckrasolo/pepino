@@ -1,1 +1,1 @@
-:set -XGADTs -XStandaloneDeriving -pgmL markdown-unlit -optL haskell+literate
+:set -pgmL markdown-unlit -optL haskell+literate
