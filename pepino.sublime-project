@@ -1,0 +1,15 @@
+{
+	"folders":
+	[
+		{
+			"path": "/Users/fraz/Projects/Haskell/pepino",
+			"file_exclude_patterns": [ "dist/package.conf.inplace", "dist/setup-config" ],
+			"folder_exclude_patterns": [ "examples", "dist/build", "dist/hpc" ]
+		},
+		{
+			"path": "/Users/fraz/Projects/Haskell/pepino/examples",
+			"file_exclude_patterns": [ "dist/package.conf.inplace", "dist/setup-config" ],
+			"folder_exclude_patterns": [ "dist/build", "dist/hpc" ]
+		}
+	]
+}
