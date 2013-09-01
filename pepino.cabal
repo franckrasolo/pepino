@@ -3,7 +3,7 @@
 
 name:                pepino
 synopsis:            Crunchy and Tasty BDD for Haskell
-description:         A BDD framework for Haskell inspired by Yatspec (Java) and Clairvoyance (Scala)
+description:         A BDD framework for Haskell inspired by Cucumber, Yatspec (Java) and Clairvoyance (Scala)
 homepage:            https://github.com/franckrasolo/pepino
 license:             BSD3
 license-file:        LICENSE
