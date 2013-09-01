@@ -23,23 +23,23 @@ transferAmount = describe "Transferring Amount From One Account To Another" $ do
 
 transferAmountWithExamples :: Scenario
 transferAmountWithExamples = describe "Transferring Amount From One Account To Another" $ do
-	Given "a first account with a balance of (\d+) bitcoins" $ \balance' ->
-		let account1 = Account balance
+	Given "a first account with ${balance1} bitcoins" $ \balance1 ->
+		let account1 = Account balance1
 
-	Given "a second account with a balance of (\d+) bitcoins" $ \balance' ->
-		let account2 = Account balance
+	Given "a second account with ${balance2} bitcoins" $ \balance2 ->
+		let account2 = Account balance2
 
-	When "(\d+) bitcoins are transferred from the first to the second account" $ \amount ->
+	When "${amount} bitcoins are transferred from the first to the second account" $ \amount ->
 		(account1, account2) = transfer account1 account2 amount
 
-	Then "the first account has a balance of (\d+) bitcoins" $ \balance'' ->
-		(balance account1) `mustBe` balance''
+	Then "the first account has ${balance1'} bitcoins" $ \balance1' ->
+		(balance account1) `mustBe` balance1'
 
-	And "the second account has a balance of (\d+) bitcoins" $ \balance'' ->
-		(balance account1) `mustBe` balance''
+	And "the second account has ${balance2'} bitcoins" $ \balance2' ->
+		(balance account1) `mustBe` balance2'
 
 	Examples $
-    | Payer | Payee | Amount | Payer | Payee |
-    |  5.0  |  3.0  |  4.0   |  1.0  |  7.0  |
-    |  1.0  |  7.0  |  2.0   | -1.0  |  9.0  |
-    |  4.0  | -2.0  |  3.0   |  1.0  |  1.0  |
+    | balance1 | balance2 | amount | balance1' | balance2' |
+    |  5.0     |  3.0     |  4.0   |  1.0      |  7.0      |
+    |  1.0     |  7.0     |  2.0   | -1.0      |  9.0      |
+    |  4.0     | -5.0     |  3.0   |  1.0      | -2.0      |
