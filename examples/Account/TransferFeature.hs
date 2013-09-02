@@ -15,7 +15,7 @@ transferAmount = Scenario "Transferring Amount From One Account To Another" $ do
 		let account2 = Account balance2
 
 	When "${4} bitcoins are transferred from the first to the second account" $ \amount ->
-		(account1, account2) = transfer account1 account2 amount
+		(account1, account2) = transfer amount account1 account2
 
 	Then "${1} bitcoin remains in the first account" $ \balance1' ->
 		(balance account1) `mustBe` balance1'
@@ -32,7 +32,7 @@ transferAmountWithExamples = Scenario "Transferring Amount From One Account To A
 		let account2 = Account balance2
 
 	When "${amount} bitcoins are transferred from the first to the second account" $ \amount ->
-		(account1, account2) = transfer account1 account2 amount
+		(account1, account2) = transfer amount account1 account2
 
 	Then "the first account has ${balance1'} bitcoins" $ \balance1' ->
 		(balance account1) `mustBe` balance1'
