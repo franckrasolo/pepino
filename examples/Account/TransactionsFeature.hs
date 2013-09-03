@@ -1,4 +1,4 @@
-module AccountFeature (feature) where
+module TransactionsFeature (feature) where
 
 import Pepino
 

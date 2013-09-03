@@ -1,4 +1,4 @@
-module TransferFeature (feature) where
+module TransfersFeature (feature) where
 
 import Pepino
 
