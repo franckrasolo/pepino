@@ -40,7 +40,7 @@ withdrawAmount = Scenario "Withdrawing An Amount From An Account " $ do
 		|   1.0   |
 		|  -4.0   |
 
-	When "each account is credited with ${4} bitcoins" $ \amount ->
+	When "${4} bitcoins are withdrawn from each account" $ \amount ->
 		let accounts' = map (withdraw amount) accounts
 
 	Then "the accounts now have the following balance in bitcoins" $
