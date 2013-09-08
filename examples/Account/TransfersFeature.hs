@@ -1,10 +1,13 @@
+{-# LANGUAGE QuasiQuotes #-}
 module TransfersFeature (feature) where
 
+import Data.String.Here
 import Pepino
 
--- | PEP-3000: Amounts can be transferred from one account to another.
 feature :: Feature
-feature = Feature "Account Transfers" [ transferAmount, transferAmountWithExamples ]
+feature = Feature "Account Transfers" [here|
+	PEP-3000: Amounts can be transferred from one account to another.
+|] [ transferAmount, transferAmountWithExamples ]
 
 transferAmount :: Scenario
 transferAmount = Scenario "Transferring Amount From One Account To Another" $ do
@@ -15,13 +18,13 @@ transferAmount = Scenario "Transferring Amount From One Account To Another" $ do
 		let account2 = Account balance2
 
 	When "${4} bitcoins are transferred from the first to the second account" $ \amount ->
-		(account1, account2) = transfer amount account1 account2
+		let (account1', account2') = transfer amount account1 account2
 
 	Then "${1} bitcoin remains in the first account" $ \balance1' ->
-		(balance account1) `mustBe` balance1'
+		(balance account1') `mustBe` balance1'
 
 	And "the second account has a balance of ${7} bitcoins" $ \balance2' ->
-		(balance account1) `mustBe` balance2'
+		(balance account2') `mustBe` balance2'
 
 transferAmountWithExamples :: Scenario
 transferAmountWithExamples = Scenario "Transferring Amount From One Account To Another" $ do
@@ -32,13 +35,13 @@ transferAmountWithExamples = Scenario "Transferring Amount From One Account To A
 		let account2 = Account balance2
 
 	When "${amount} bitcoins are transferred from the first to the second account" $ \amount ->
-		(account1, account2) = transfer amount account1 account2
+		let (account1', account2') = transfer amount account1 account2
 
 	Then "the first account has ${balance1'} bitcoins" $ \balance1' ->
 		(balance account1) `mustBe` balance1'
 
 	And "the second account has ${balance2'} bitcoins" $ \balance2' ->
-		(balance account1) `mustBe` balance2'
+		(balance account2) `mustBe` balance2'
 
 	Examples $
     | balance1 | balance2 | amount | balance1' | balance2' |
