@@ -7,18 +7,27 @@ feature :: Feature
 feature = Feature "Account Transactions" [ payAmount, withdrawAmount ]
 
 {-|
+  In thes examples, we sometimes initialise customer accounts with a negative
+  balance in order to illustrate transactions for overdrawn account.
+
+  In a future example, we will introduce the concept of an overdraft facility
+  that account transactions will be subjected to.
+-}
+initialBalances :: Background
+initialBalances = Background "Initialise customer accounts" $
+	Given "${accounts} with the following initial balances in bitcoins" $
+		|   5.0   |
+		|   1.0   |
+		|  -4.0   |
+
+{-|
   PEP-1234: Pay an amount into accounts with a positive balance.
   PEP-2345: Pay an amount into accounts with a negative balance.
 
   Payments can be made from a current account either online or over the counter.
 -}
 payAmount :: Scenario
-payAmount = Scenario "Paying An Amount Into An Account " $ do
-	Given "${accounts} with the following initial balances in bitcoins" $
-		|   5.0   |
-		|   1.0   |
-		|  -4.0   |
-
+payAmount = Scenario "Paying An Amount Into An Account" $ do
 	When "each account is credited with ${4} bitcoins" $ \amount ->
 		let accounts' = map (pay amount) accounts
 
@@ -35,11 +44,6 @@ payAmount = Scenario "Paying An Amount Into An Account " $ do
 -}
 withdrawAmount :: Scenario
 withdrawAmount = Scenario "Withdrawing An Amount From An Account " $ do
-	Given "${accounts} with the following initial balances in bitcoins" $
-		|   5.0   |
-		|   1.0   |
-		|  -4.0   |
-
 	When "${4} bitcoins are withdrawn from each account" $ \amount ->
 		let accounts' = map (withdraw amount) accounts
 
