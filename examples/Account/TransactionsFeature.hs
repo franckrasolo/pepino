@@ -4,10 +4,10 @@ import Pepino
 
 -- | PEP-1000: Amounts can either be paid into or withdrawn from an account.
 feature :: Feature
-feature = Feature "Account Transactions" [ payAmount, withdrawAmount ]
+feature = Feature "Account Transactions" initialBalances [ payAmount, withdrawAmount ]
 
 {-|
-  In thes examples, we sometimes initialise customer accounts with a negative
+  In these examples, we sometimes initialise customer accounts with a negative
   balance in order to illustrate transactions for overdrawn account.
 
   In a future example, we will introduce the concept of an overdraft facility
