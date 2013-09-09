@@ -7,7 +7,7 @@ import Pepino
 feature :: Feature
 feature = Feature "Account Transactions" [here|
 	PEP-1000: Amounts can either be paid into or withdrawn from an account.
-|] initialBalances [ payAmount, withdrawAmount ]
+|] initialBalances [ payAmount, withdrawAmount, withdrawThenRefundAmount ]
 
 initialBalances :: Background
 initialBalances = Background "Initialise customer accounts" [here|
@@ -18,9 +18,9 @@ initialBalances = Background "Initialise customer accounts" [here|
 	that account transactions will be subjected to.
 |] $
 	Given "${accounts} with the following initial balances in bitcoins" $
-		|   5.0   |
-		|   1.0   |
-		|  -4.0   |
+		|  5.0  |
+		|  1.0  |
+		| -4.0  |
 
 payAmount :: Scenario
 payAmount = Scenario "Paying An Amount Into An Account" [here|
@@ -33,9 +33,9 @@ payAmount = Scenario "Paying An Amount Into An Account" [here|
 		let accounts' = map (pay amount) accounts
 
 	Then "the accounts now have the following balance in bitcoins" $
-		|   9.0   |
-		|   5.0   |
-		|   0.0   |
+		|  9.0  |
+		|  5.0  |
+		|  0.0  |
 
 withdrawAmount :: Scenario
 withdrawAmount = Scenario "Withdrawing An Amount From An Account " [here|
@@ -48,16 +48,16 @@ withdrawAmount = Scenario "Withdrawing An Amount From An Account " [here|
 		let accounts' = map (withdraw amount) accounts
 
 	Then "the accounts now have the following balance in bitcoins" $
-		|   1.0   |
-		|  -3.0   |
-		|  -8.0   |
+		|  1.0  |
+		| -3.0  |
+		| -8.0  |
 
 withdrawThenRefundAmount :: Scenario
-withdrawAmount = Scenario "Withdrawing Then Refunding The Same Amount From An Account" $ do
+withdrawThenRefundAmount = Scenario "Withdrawing Then Refunding The Same Amount From An Account" $ do
 	When "the same amount is withdrawn then refunded into each account" $ property $ \amount ->
 		let accounts' = map ((pay amount) . (withdraw amount)) accounts
 
 	Then "the accounts preserve their initial balance" $
-		|   5.0   |
-		|   1.0   |
-		|  -4.0   |
+		|  5.0  |
+		|  1.0  |
+		| -4.0  |
