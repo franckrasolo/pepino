@@ -51,3 +51,13 @@ withdrawAmount = Scenario "Withdrawing An Amount From An Account " [here|
 		|   1.0   |
 		|  -3.0   |
 		|  -8.0   |
+
+withdrawThenRefundAmount :: Scenario
+withdrawAmount = Scenario "Withdrawing Then Refunding The Same Amount From An Account" $ do
+	When "the same amount is withdrawn then refunded into each account" $ property $ \amount ->
+		let accounts' = map ((pay amount) . (withdraw amount)) accounts
+
+	Then "the accounts preserve their initial balance" $
+		|   5.0   |
+		|   1.0   |
+		|  -4.0   |

@@ -38,10 +38,10 @@ transferAmountWithExamples = Scenario "Transferring Amount From One Account To A
 		let (account1', account2') = transfer amount account1 account2
 
 	Then "the first account has ${balance1'} bitcoins" $ \balance1' ->
-		(balance account1) `mustBe` balance1'
+		(balance account1') `mustBe` balance1'
 
 	And "the second account has ${balance2'} bitcoins" $ \balance2' ->
-		(balance account2) `mustBe` balance2'
+		(balance account2') `mustBe` balance2'
 
 	Examples $
     | balance1 | balance2 | amount | balance1' | balance2' |
