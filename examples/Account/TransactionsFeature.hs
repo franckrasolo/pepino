@@ -12,9 +12,9 @@ feature = Feature "Account Transactions" [here|
 initialBalances :: Background
 initialBalances = Background "Initialise customer accounts" [here|
 	In these examples, we sometimes initialise customer accounts with a negative
-	balance in order to illustrate transactions for overdrawn account.
+	balance in order to illustrate transactions with overdrawn accounts.
 
-	In a future example, we will introduce the concept of an overdraft facility
+	In a future example, we will introduce the concept of an overdraft limit
 	that account transactions will be subjected to.
 |] $
 	Given "${accounts} with the following initial balances in bitcoins" $
