@@ -26,25 +26,37 @@ transferAmount = Scenario "Transferring Amount From One Account To Another" $ do
     And "the second account has a balance of ${7} bitcoins" $ \balance2' ->
         (balance account2') `mustBe` balance2'
 
-transferAmountWithExamples :: Scenario
-transferAmountWithExamples = Scenario "Transferring Amount From One Account To Another" $ do
-    Given "a first account with ${balance1} bitcoins" $ \balance1 ->
+transferAmountWithExamples :: ScenarioOutline
+transferAmountWithExamples = ScenarioOutline "Transferring Amount From One Account To Another" $ do
+    Given "a first account with <balance1> bitcoins" $ \balance1 ->
         let account1 = Account balance1
 
-    Given "a second account with ${balance2} bitcoins" $ \balance2 ->
+    Given "a second account with <balance2> bitcoins" $ \balance2 ->
         let account2 = Account balance2
 
-    When "${amount} bitcoins are transferred from the first to the second account" $ \amount ->
+    When "<amount> bitcoins are transferred from the first to the second account" $ \amount ->
         let (account1', account2') = transfer amount account1 account2
 
-    Then "the first account has ${balance1'} bitcoins" $ \balance1' ->
+    Then "the first account has <balance1'> bitcoins" $ \balance1' ->
         (balance account1') `mustBe` balance1'
 
-    And "the second account has ${balance2'} bitcoins" $ \balance2' ->
+    And "the second account has <balance2'> bitcoins" $ \balance2' ->
         (balance account2') `mustBe` balance2'
 
-    Examples $
+    Examples "Successful Transfers" [here|
+        A transfer is successful when the paying account preserves a positive balance.
+
+        In a future example, we will introduce the concept of an overdraft limit
+        that account transactions will be subjected to.
+    |] $
         | balance1 | balance2 | amount | balance1' | balance2' |
         |  5.0     |  3.0     |  4.0   |  1.0      |  7.0      |
-        |  1.0     |  7.0     |  2.0   | -1.0      |  9.0      |
         |  4.0     | -5.0     |  3.0   |  1.0      | -2.0      |
+
+    Examples "Unsuccessful Transfers" [here|
+        A transfer is unsuccessful if the paying account would end up with
+        a negative balance as a result of the withdrawal.
+    |] $
+        | balance1 | balance2 | amount | balance1' | balance2' |
+        |  5.0     |  3.0     |  7.0   |  5.0      |  3.0      |
+        |  1.0     |  7.0     |  2.0   |  1.0      |  7.0      |
