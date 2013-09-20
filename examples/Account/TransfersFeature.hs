@@ -10,11 +10,11 @@ feature = Feature "Account Transfers" [here|
 |] [ transferAmount, transferAmountWithExamples ]
 
 transferAmount :: Scenario
-transferAmount = Scenario "Transferring Amount From One Account To Another" $ do
+transferAmount = Scenario "Transferring Amount From One Account To Another" "" $ do
     Given "a first account with a balance of ${5} bitcoins" $ \balance1 ->
         let account1 = Account balance1
 
-    Given "a second account with a balance of ${3} bitcoins" $ \balance2 ->
+    And "a second account with a balance of ${3} bitcoins" $ \balance2 ->
         let account2 = Account balance2
 
     When "${4} bitcoins are transferred from the first to the second account" $ \amount ->
@@ -27,11 +27,11 @@ transferAmount = Scenario "Transferring Amount From One Account To Another" $ do
         (balance account2') `mustBe` balance2'
 
 transferAmountWithExamples :: ScenarioOutline
-transferAmountWithExamples = ScenarioOutline "Transferring Amount From One Account To Another" $ do
+transferAmountWithExamples = ScenarioOutline "Transferring Amount From One Account To Another" "" $ do
     Given "a first account with <balance1> bitcoins" $ \balance1 ->
         let account1 = Account balance1
 
-    Given "a second account with <balance2> bitcoins" $ \balance2 ->
+    And "a second account with <balance2> bitcoins" $ \balance2 ->
         let account2 = Account balance2
 
     When "<amount> bitcoins are transferred from the first to the second account" $ \amount ->

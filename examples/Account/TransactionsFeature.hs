@@ -3,6 +3,7 @@ module TransactionsFeature (feature) where
 
 import Data.String.Here
 import Pepino
+import Prelude hiding ((.))
 
 feature :: Feature
 feature = Feature "Account Transactions" [here|
@@ -53,11 +54,14 @@ withdrawAmount = Scenario "Withdrawing An Amount From An Account " [here|
         | -8.0  |
 
 withdrawThenRefundAmount :: Scenario
-withdrawThenRefundAmount = Scenario "Withdrawing Then Refunding The Same Amount From An Account" $ do
+withdrawThenRefundAmount = Scenario "Withdrawing Then Refunding The Same Amount From An Account" "" $ do
     When "the same amount is withdrawn then refunded into each account" $ property $ \amount ->
-        let accounts' = map ((pay amount) . (withdraw amount)) accounts
+        let accounts' = map ((pay . withdraw) amount) accounts
 
     Then "the accounts preserve their initial balance" $
         |  5.0  |
         |  1.0  |
         | -4.0  |
+
+(.) :: (a -> b -> b) -> (a -> b -> b) -> a -> b -> b
+(g . f) x y = g x (f x y)
