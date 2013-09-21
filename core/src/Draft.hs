@@ -5,7 +5,7 @@ import Data.String.Here
 import Pepino
 
 main :: IO ()
-main = print feature
+main = putStr $ show feature
 
 feature :: Feature
 feature = Feature "<feature title>" [hereLit|
