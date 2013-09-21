@@ -1,5 +1,5 @@
 {-# LANGUAGE QuasiQuotes #-}
-module Main where
+module Draft where
 
 import Data.String.Here
 import Pepino
