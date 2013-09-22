@@ -6,12 +6,12 @@ import Pepino
 import Prelude hiding ((.))
 
 feature :: Feature
-feature = Feature "Account Transactions" [here|
+feature = Feature "Account Transactions" [hereLit|
     PEP-1000: Amounts can either be paid into or withdrawn from an account.
 |] initialBalances [ payAmount, withdrawAmount, withdrawThenRefundAmount ]
 
 initialBalances :: Background
-initialBalances = Background "Initialise customer accounts" [here|
+initialBalances = Background "Initialise customer accounts" [hereLit|
     In these examples, we sometimes initialise customer accounts with a negative
     balance in order to illustrate transactions with overdrawn accounts.
 
@@ -24,7 +24,7 @@ initialBalances = Background "Initialise customer accounts" [here|
         | -4.0  |
 
 payAmount :: Scenario
-payAmount = Scenario "Paying An Amount Into An Account" [here|
+payAmount = Scenario "Paying An Amount Into An Account" [hereLit|
     PEP-1234: Pay an amount into accounts with a positive balance.
     PEP-2345: Pay an amount into accounts with a negative balance.
 
@@ -39,7 +39,7 @@ payAmount = Scenario "Paying An Amount Into An Account" [here|
         |  0.0  |
 
 withdrawAmount :: Scenario
-withdrawAmount = Scenario "Withdrawing An Amount From An Account " [here|
+withdrawAmount = Scenario "Withdrawing An Amount From An Account " [hereLit|
     PEP-3456: Withdraw an amount into accounts with a positive balance.
     PEP-4567: Withdraw an amount into accounts with a negative balance.
 

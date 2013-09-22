@@ -1,4 +1,4 @@
-module Pepino (Feature (..), Background (..), Scenario (..), Examples (..), Step (..)) where
+module Pepino (Feature (..), Background (..), Scenario (..), Examples (..), Step (..), Title, Description, Sentence) where
 
 type Title = String
 type Description = String
@@ -29,10 +29,10 @@ instance Show Examples where
 
 instance Show Step where
     show (Given sentence) = "    Given " ++ sentence
-    show (When  sentence) = "    When  " ++ sentence
-    show (Then  sentence) = "    Then  " ++ sentence
-    show (And   sentence) = "    And   " ++ sentence
-    show (But   sentence) = "    But   " ++ sentence
+    show (When  sentence) = "     When " ++ sentence
+    show (Then  sentence) = "     Then " ++ sentence
+    show (And   sentence) = "      And " ++ sentence
+    show (But   sentence) = "      But " ++ sentence
 
 format :: Description -> String
 format description = "\n" ++ description ++ "\n"

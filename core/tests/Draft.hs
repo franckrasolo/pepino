@@ -1,15 +1,22 @@
 {-# LANGUAGE QuasiQuotes #-}
-module Draft where
+module DraftProd where
 
-import Data.String.Here
+import Data.String.Here (hereLit)
 import Pepino
+import Pepino.Renderers.Ansi
+import Text.PrettyPrint.ANSI.Leijen
 
 main :: IO ()
-main = putStr $ show feature
+main = do
+    let doc = pretty feature
+    putDoc $ plain doc
+    putDoc doc
 
 feature :: Feature
 feature = Feature "<feature title>" [hereLit|
-    <feature description>
+    A feature
+    can be described
+    over multiple lines.
 |] (Background "" "") [ scenario ]
 
 scenario :: Scenario
@@ -17,12 +24,12 @@ scenario = Scenario "<scenario title>" [hereLit|
     A scenario
     can be described
     over multiple lines.
-|] $
-    Given "a first step" :
-    And   "a second step" :
-    But   "under different conditions" :
-    When  "an action is performed" :
-    Then  "a first condition holds true" :
-    But   "the second one doesn't" :
-    And   "all is good" :
-    []
+|] $ [
+    Given "a first step",
+    And   "a second step",
+    But   "under different conditions",
+    When  "an action is performed",
+    Then  "a first condition holds true",
+    But   "the second one doesn't",
+    And   "all is good"
+    ]
