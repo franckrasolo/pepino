@@ -1,3 +1,4 @@
+{-# OPTIONS_GHC -fno-warn-orphans #-}
 module Pepino.Renderers.Ansi where
 
 import Pepino

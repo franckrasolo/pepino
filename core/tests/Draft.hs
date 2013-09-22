@@ -1,5 +1,5 @@
 {-# LANGUAGE QuasiQuotes #-}
-module DraftProd where
+module Draft where
 
 import Data.String.Here (hereLit)
 import Pepino
