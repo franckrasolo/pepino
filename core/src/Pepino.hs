@@ -1,5 +1,13 @@
-module Pepino (Feature (..), Background (..), Scenario (..), Examples (..), Step (..), Title, Description, Sentence) where
+{-# OPTIONS_GHC -fno-warn-missing-fields #-}
+module Pepino (
+    Feature (..), Background (..), Scenario (..), Examples (..), Step (..),
+    Title, Description, Sentence,
+    notes
+) where
 
+import Language.Haskell.TH
+import Language.Haskell.TH.Quote
+ 
 type Title = String
 type Description = String
 type Sentence = String
@@ -36,6 +44,9 @@ instance Show Step where
 
 format :: Description -> String
 format description = "\n" ++ description ++ "\n"
+
+notes :: QuasiQuoter
+notes = QuasiQuoter { quoteExp = stringE }
 
 list :: (Show a) => [a] -> String
 list xs = unlines (map show xs)

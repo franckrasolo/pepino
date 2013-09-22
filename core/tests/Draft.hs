@@ -1,7 +1,6 @@
 {-# LANGUAGE QuasiQuotes #-}
 module Draft where
 
-import Data.String.Here (hereLit)
 import Pepino
 import Pepino.Renderers.Ansi
 import Text.PrettyPrint.ANSI.Leijen
@@ -13,14 +12,14 @@ main = do
     putDoc doc
 
 feature :: Feature
-feature = Feature "<feature title>" [hereLit|
+feature = Feature "<feature title>" [notes|
     A feature
     can be described
     over multiple lines.
 |] (Background "" "") [ scenario ]
 
 scenario :: Scenario
-scenario = Scenario "<scenario title>" [hereLit|
+scenario = Scenario "<scenario title>" [notes|
     A scenario
     can be described
     over multiple lines.
