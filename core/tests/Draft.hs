@@ -16,10 +16,25 @@ feature = Feature "<feature title>" [notes|
     A feature
     can be described
     over multiple lines.
-|] (Background "" "") [ scenario ]
+|] (Background "" "") [ scenario1, scenario2, scenario3 ]
 
-scenario :: Scenario
-scenario = Scenario "<scenario title>" [notes|
+scenario1 :: Scenario
+scenario1 = Scenario "" "" $ [
+    Given "a step",
+    When  "an action is performed",
+    Then  "a condition holds true"
+    ]
+
+scenario2 :: Scenario
+scenario2 = Scenario "<scenario title>" "" $ [
+    Given "a step",
+    But   "under different conditions",
+    When  "an action is performed",
+    Then  "the same condition no longer holds true"
+    ]
+
+scenario3 :: Scenario
+scenario3 = Scenario "<scenario title>" [notes|
     A scenario
     can be described
     over multiple lines.

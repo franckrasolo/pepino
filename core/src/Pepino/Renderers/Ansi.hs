@@ -31,7 +31,12 @@ instance Pretty Step where
     pretty (But   sentence) = step "  But" sentence
 
 section :: String -> Title -> Description -> Doc
-section name title description = (bold . underline . yellow . text) name <+> white (text title <$> text description)
+section name title description = (bold . underline . yellow . text) name <> render title description
+    where
+        render :: Title -> Description -> Doc
+        render ""    "" = linebreak
+        render title "" = space <> white (text title) <> linebreak
+        render title description = space <> white (text title <$> text description)
 
 asDocs :: (Pretty a) => [a] -> Doc
 asDocs xs = vsep (map pretty xs) <> linebreak

@@ -5,7 +5,7 @@ import Data.String.Here
 import Pepino
 
 feature :: Feature
-feature = Feature "Account Transfers" [hereLit|
+feature = Feature "Account Transfers" [notes|
     PEP-3000: Amounts can be transferred from one account to another.
 |] [ transferAmount, transferAmountWithExamples ]
 
@@ -43,7 +43,7 @@ transferAmountWithExamples = ScenarioOutline "Transferring Amount From One Accou
     And "the second account has <balance2'> bitcoins" $ \balance2' ->
         (balance account2') `mustBe` balance2'
 
-    Examples "Successful Transfers" [hereLit|
+    Examples "Successful Transfers" [notes|
         A transfer is successful when the paying account preserves a positive balance.
 
         In a future example, we will introduce the concept of an overdraft limit
@@ -53,7 +53,7 @@ transferAmountWithExamples = ScenarioOutline "Transferring Amount From One Accou
         |  5.0     |  3.0     |  4.0   |  1.0      |  7.0      |
         |  4.0     | -5.0     |  3.0   |  1.0      | -2.0      |
 
-    Examples "Unsuccessful Transfers" [hereLit|
+    Examples "Unsuccessful Transfers" [notes|
         A transfer is unsuccessful if the paying account would end up with
         a negative balance as a result of the withdrawal.
     |] $
