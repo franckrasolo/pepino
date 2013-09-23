@@ -8,7 +8,7 @@ import Text.PrettyPrint.ANSI.Leijen
 main :: IO ()
 main = do
     let doc = pretty feature
-    putDoc $ plain doc
+    --putDoc $ plain doc
     putDoc doc
 
 feature :: Feature
