@@ -2,7 +2,7 @@
 module Draft where
 
 import Pepino
-import Pepino.Renderers.Ansi
+import Pepino.Renderers.Ansi()
 import Text.PrettyPrint.ANSI.Leijen
 
 main :: IO ()

@@ -1,4 +1,3 @@
-{-# OPTIONS_GHC -fno-warn-missing-fields #-}
 module Pepino (
     Feature (..), Background (..), Scenario (..), Examples (..), Step (..),
     Title, Description, Sentence,
@@ -46,7 +45,7 @@ format :: Description -> String
 format description = "\n" ++ description ++ "\n"
 
 notes :: QuasiQuoter
-notes = QuasiQuoter { quoteExp = stringE }
+notes = QuasiQuoter { quoteExp = stringE, quotePat = undefined, quoteType = undefined, quoteDec = undefined }
 
 list :: (Show a) => [a] -> String
 list xs = unlines (map show xs)
